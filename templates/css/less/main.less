@@ -1,12 +1,10 @@
 
 @import "bootstrap-imports.less";
-
-// Highlighting
 @import "highlight-tomorrow-night-bright.less";
 
-
-/* Sticky footer styles
--------------------------------------------------- */
+//
+// Sticky footer styles
+//
 
 @footer-height: 120px;
 @footer-height-mobile: 160px;
@@ -14,27 +12,28 @@
 html,
 body {
   height: 100%;
-  /* The html and body elements cannot have any padding or margin. */
+  // The html and body elements cannot have any padding or margin.
 }
 
-/* Wrapper for page content to push down footer */
-#wrap {
-  min-height: 100%;
+// Wrapper for page content to push down footer
+.wrap {
   height: auto !important;
   height: 100%;
-  /* Negative indent footer by its height */
-  margin: 0 auto -60px;
-  /* Pad bottom by footer height */
+  min-height: 100%;
+
+  // Pad bottom by footer height
   padding: 0 0 @footer-height;
 
   @media(max-width: 991px) {
     padding: 0 0 @footer-height-mobile;
   }
 
+  // Negative indent footer by its height
+  margin: 0 auto -60px;
 }
 
-/* Set the fixed height of the footer here */
-#footer {
+// Set the fixed height of the footer here
+.footer {
   height: @footer-height;
 
   @media(max-width: 991px) {
@@ -43,13 +42,13 @@ body {
 
   padding-top: 10px;
 
-  background-color: @navbar-inverse-bg;
   color: @navbar-inverse-color;
+  background-color: @navbar-inverse-bg;
 }
 
-/* Lastly, apply responsive CSS fixes as necessary */
+// Lastly, apply responsive CSS fixes as necessary
 @media (max-width: 767px) {
-  #footer {
+  .footer {
     margin-left: -20px;
     margin-right: -20px;
     padding-left: 20px;
@@ -61,7 +60,7 @@ body {
 // Post list
 //
 
-#browse-archive {
+.browse-archive {
   margin-top: 40px;
 }
 
@@ -69,11 +68,11 @@ body {
 // Posts
 //
 
-article time.updated {
-  margin-bottom: 10px;
+article .updated {
   display: block;
+  margin-bottom: 10px;
 }
 
-#disqus-block {
+.disqus-block {
   margin-top: 40px;
 }
