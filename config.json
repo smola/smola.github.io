@@ -34,9 +34,6 @@
   },
 
   "thirdparty_snippets": {
-    "google_analytics": {
-      "property_id": "UA-xxxxxx-x"
-    },
     "web_fonts": {
       "google": {
         "families": [ "Monda" ]
