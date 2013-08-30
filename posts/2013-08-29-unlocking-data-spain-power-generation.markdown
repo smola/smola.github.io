@@ -11,11 +11,11 @@ tags:
 
 *TL;DR: Spanish Government has a web service to query power generation statistics. But it is locked behind some obscurity and lack of docs. I have put together some scripts to fetch all raw data. [Fork it on GitHub](http://smola.github.io/ree-demanda) or [download a CSV with all historic data](http://smola.github.io/ree-demanda/generation_demand_full.csv).*
 
-For some time, I have been increasingly interested in electricity demand statistics. Some witty folks are using **[demanda.ree.es](http://demanda.ree.es/demanda.html), a Flash visualizer for power generation and demand in Spain**, to measure interesting stuff such as the impact of turn-off-the-lights protests or solidarity acts ([1](http://rinzewind.org/archives/2007/02/01/felicidades-han-sido-ustedes-un-glitch-en-el-sistema/)) or the success of a general strike ([1](http://politikon.es/2012/03/29/estimando-el-seguimiento-de-la-huelga-en-tiempo-real/), [2](http://rinzewind.org/archives/2012/11/14/y-asi-va-la-huelga-respecto-a-huelgas-anteriores/), [3](http://politikon.es/2012/11/29/como-estimar-el-impacto-de-una-huelga-via-demanda-electrica/)). These uses are really exciting and I think we can get much more out of this kind of data. **So I decided to provide easy access to it.**
+For some time, I have been increasingly interested in electricity demand statistics. Some witty folks are using **[demanda.ree.es](https://demanda.ree.es/demanda.html), a Flash visualizer for power generation and demand in Spain**, to measure interesting stuff such as the impact of turn-off-the-lights protests or solidarity acts ([1](http://rinzewind.org/archives/2007/02/01/felicidades-han-sido-ustedes-un-glitch-en-el-sistema/)) or the success of a general strike ([1](http://politikon.es/2012/03/29/estimando-el-seguimiento-de-la-huelga-en-tiempo-real/), [2](http://rinzewind.org/archives/2012/11/14/y-asi-va-la-huelga-respecto-a-huelgas-anteriores/), [3](http://politikon.es/2012/11/29/como-estimar-el-impacto-de-una-huelga-via-demanda-electrica/)). These uses are really exciting and I think we can get much more out of this kind of data. **So I decided to provide easy access to it.**
 
 ## How?
 
-Let's go to [http://demanda.ree.es/demanda.html](http://demanda.ree.es/demanda.html) and fire up Google Developer Tools.
+Let's go to [https://demanda.ree.es/demanda.html](https://demanda.ree.es/demanda.html) and fire up Google Developer Tools.
 
 ```
 GET https://demanda.ree.es/WSVisionaV01/wsDemanda30Service?WSDL
