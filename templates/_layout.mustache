@@ -1,0 +1,19 @@
+{{> header }}
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+
+      {{#is_post}}
+        {{> post}}
+      {{/is_post}}
+
+      {{^is_post}}
+        {{> archive}}
+      {{/is_post}}
+
+    </div>
+  </div>
+</div>
+
+{{> footer }}

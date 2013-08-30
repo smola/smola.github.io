@@ -1,0 +1,17 @@
+
+node_modules
+
+# Jekyll
+_site
+
+# SASS
+.sass-cache
+
+# Vim
+*.swp
+
+# Mac OS X
+*.DS_Store
+
+# Gedit
+*~

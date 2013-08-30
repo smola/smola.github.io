@@ -1,0 +1,21 @@
+{
+  "name": "mola.io",
+  "version": "0.0.1",
+  "description": "mola.io blog",
+  "dependencies": {
+    "punch": "0.5.x",
+    "punch-blog-content-handler": "0.0.x",
+    "punch-current-page-helper": "0.0.x",
+    "punch-markdown-highlight": "1.1.x",
+    "punch-sitemap-generator": "0.0.x",
+    "punch-thirdparty-snippets-helper": "0.0.x",
+    "underscore": "1.4.x"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Santiago M. Mola",
+  "license": "MIT (code) / CC-by-3.0 (content)"
+}
