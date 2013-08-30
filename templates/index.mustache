@@ -1,31 +1,31 @@
 {{> header }}
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2">
 
-      <div class="posts">
-        {{#recent_posts}}
-          <article class="hentry"> 
-            <h2 class="entry-title"><a href="{{ permalink }}">{{{ title }}}</a></h2>
-            <time class="updated" datetime="{{ published_date }}" pubdate>{{#long_date}}{{published_date}}{{/long_date}}</time>
+            <div class="posts">
+              {{#recent_posts}}
+                <article class="hentry">
+                  <h2 class="entry-title"><a href="{{ permalink }}">{{{ title }}}</a></h2>
+                  <time class="updated" datetime="{{ published_date }}" pubdate>{{#long_date}}{{published_date}}{{/long_date}}</time>
 
-            <div class="entry-content">
-              {{{ content }}}
+                  <div class="entry-content">
+                    {{{ content }}}
+                  </div>
+                  {{#is_teaser}}
+                    <div><a href="{{ permalink }}" class="more">More »</a></div>
+                  {{/is_teaser}}
+                </article>
+              {{/recent_posts}}
             </div>
-            {{#is_teaser}}
-              <div><a href="{{ permalink }}" class="more">More »</a></div>
-            {{/is_teaser}}
-          </article>
-        {{/recent_posts}}
-      </div>
 
-      <div id="browse-archive">
-        <a href="/archive">Browse Archive</a>
-      </div>
+            <div id="browse-archive">
+              <a href="/archive">Browse Archive</a>
+            </div>
 
-    </div>
-  </div>
-</div>
+          </div>
+        </div>
+      </div>
 
 {{> footer }}
