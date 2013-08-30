@@ -92,7 +92,7 @@ I fetched all historic data from the web service and consolidated it in a single
 
 Here is a visual example of the data. Power generated since 2007 in Spain. Each line is a different power source. Data is relative to the total power demand at a given time.
 
-![Power generation by source in Spain; 2007-2013](/img/ree_monthly_relative.png)
+![Power generation by source in Spain; 2007-2013](//mola.io/img/ree_monthly_relative.png)
 
 ## Ideas?
 
