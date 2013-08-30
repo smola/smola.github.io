@@ -4,7 +4,7 @@ TMP_DIR=/tmp/punch-blog-deploy
 
 rm -rf _site
 punch g
-cp NAME _site/
+cp CNAME README.md _site/
 rm -rf $TMP_DIR
 mkdir $TMP_DIR
 cp -r .git $TMP_DIR/
