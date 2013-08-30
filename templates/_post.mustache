@@ -2,11 +2,14 @@
 
 
 <div id="main-content">
-	<article class="hentry"> 
-		<h2 class="entry-title">{{{ title }}}</h2>
-		<time class="updated" datetime="{{ published_date }}" pubdate>{{#long_date}}{{published_date}}{{/long_date}}</time>
+	<article itemscope itemtype="http://schema.org/BlogPosting">
+		<h2 class="entry-title" itemprop="name headline">{{{ title }}}</h2>
 
-		<div class="entry-content">
+                <div class="meta">
+			Published on <time class="updated" datetime="{{ published_date }}" pubdate itemprop="datePublished">{{#long_date}}{{published_date}}{{/long_date}}</time> by Santiago M. Mola
+		</div>
+
+		<div class="entry-content" itemprop="articleBody">
 			{{{content}}}
 		</div>
 
