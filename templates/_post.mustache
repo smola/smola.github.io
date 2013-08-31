@@ -2,9 +2,7 @@
       <div id="main-content">
         <article itemscope itemtype="http://schema.org/BlogPosting">
           <h2 class="entry-title" itemprop="name headline">{{{ title }}}</h2>
-          <div class="meta">
-            Published on <time class="updated" datetime="{{ published_date }}" pubdate itemprop="datePublished">{{#long_date}}{{published_date}}{{/long_date}}</time> by Santiago M. Mola
-          </div>
+            <time class="updated" datetime="{{#iso_date}}{{ published_date }}{{/iso_date}}" pubdate itemprop="datePublished">{{#long_date}}{{published_date}}{{/long_date}}</time>
 
           <div class="entry-content" itemprop="articleBody">
             {{{content}}}
