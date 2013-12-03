@@ -41,7 +41,7 @@ results for *Chuvalo* are included. At least, in this case, I get a message expl
 (*Including results for chuvalo. Do you want results for chivalo only?*) which was not the case for Bing in
 Spanish.
 
-**To the Bing guys: Chivalo can be, at least, 3 things:**
+**To the Bing guys: Chivalo can be a few things:**
 
 1. A Spanish word (*chívalo*) for *gossip it*. It's quite unusual, but it's a form of the verb *chivar*.
 2. A Spanish family name.
