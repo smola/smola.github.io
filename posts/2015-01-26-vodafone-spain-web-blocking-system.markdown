@@ -46,3 +46,5 @@ $ curl -v http://thepiratebay.org
 * Connection #0 to host thepiratebay.org left intact
 * Closing connection #0
 ```
+
+The redirection goes to [castor.vodafone.es](castor.vodafone.es) (212.73.40.87) a server running Optenet Web Server.
