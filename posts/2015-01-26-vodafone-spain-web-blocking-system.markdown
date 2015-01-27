@@ -26,8 +26,8 @@ In a way, this is much more sophisticated than the traditional DNS or IP block. 
 
 **More on Optenet's and Vodafone's DPI systems:**
 
-- [Optenet: WebFilter - Internet Filtering & Application Management](http://www.optenet.es/en-us/webfilter.asp) ([archive](https://archive.today/tYmk2)
-- [Optenet: Multitenant Internet Security Solutions for Telco](http://www.optenet.es/en-us/solutions-telecom.asp) ([archive](https://archive.today/Sjt3G)
+- [Optenet: WebFilter - Internet Filtering & Application Management](http://www.optenet.es/en-us/webfilter.asp) ([archive](https://archive.today/tYmk2))
+- [Optenet: Multitenant Internet Security Solutions for Telco](http://www.optenet.es/en-us/solutions-telecom.asp) ([archive](https://archive.today/Sjt3G))
 - [Broadband Traffic Management: DPI Deployments (74): Vodafone Turkey Uses Optenet and Allot for Web Filtering](http://broabandtrafficmanagement.blogspot.com.es/2011/06/dpi-deployments-74-vodafone-turkey-uses.html) ([archive](https://archive.today/LqinI))
 
 ## The technical details
