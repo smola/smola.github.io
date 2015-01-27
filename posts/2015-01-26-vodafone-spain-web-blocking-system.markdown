@@ -21,6 +21,7 @@ In a way, this is much more sophisticated than the traditional DNS or IP block. 
 
 **More on the TPB block by Vodafone Spain:**
 
+- [TorrentFreak: Spanish Government orders Pirate Bay blockade](http://torrentfreak.com/spanish-government-orders-pirate-bay-blockade-150127/) ([archive](https://archive.today/uHWJw))
 - [Bitcloud: Censura de Vodafone Fibra](http://www.bitcloud.es/2014/12/censura-de-vodafone-fibra.html?m=1) ([archive](https://archive.today/Xd32N)) *(Spanish)*
 
 **More on Optenet's and Vodafone's DPI systems:**
