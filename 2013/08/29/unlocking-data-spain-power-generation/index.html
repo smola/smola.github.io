@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+      <title>mola.io</title>
+
+    <link rel="alternate" type="application/rss+xml" title="mola.io" href="http://feeds.feedburner.com/molaio?format=xml">
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/main-1422312081000.css">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css">
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome-ie7.min.css">
+    <![endif]-->
+
+    <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+
+    <!-- fonts -->
+    <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script><script>  WebFont.load({"google":{"families":["Monda"]}}  );</script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-43666029-1', 'mola.io');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="wrap">
+
+      <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+      <![endif]-->
+
+      <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">mola.io</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/archive">Archive</a></li>
+          </ul>
+          <ul class="social-icons nav navbar-nav navbar-right">
+            <li><a href="http://github.com/smola"><i class="icon-github"></i></a></li>
+            <li><a href="http://twitter.com/mola_io"><i class="icon-twitter"></i></a></li>
+            <li><a href="http://linkedin.com/in/santiagomola"><i class="icon-linkedin"></i></a></li>
+            <li><a href="https://plus.google.com/107710791533787214572?rel=author"><i class="icon-google-plus"></i></a></li>
+            <!-- TODO: No icon: <li><a href="http://ohloh.mola.io">Ohloh</a></li> -->
+          </ul>
+        </div>
+      </nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+
+
+      <div id="main-content">
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+          <h2 class="entry-title" itemprop="name headline">Unlocking data: Power generation statistics in Spain</h2>
+            <time class="updated" datetime="2013-08-28T22:00:00.000Z" pubdate itemprop="datePublished">29 August 2013</time>
+
+          <div class="entry-content" itemprop="articleBody">
+            <p><em>TL;DR: Spanish Government has a web service to query power generation statistics. But it is locked behind some obscurity and lack of docs. I have put together some scripts to fetch all raw data. <a href="http://smola.github.io/ree-demanda">Fork it on GitHub</a> or <a href="http://smola.github.io/ree-demanda/generation_demand_full.csv">download a CSV with all historic data</a>.</em></p>
+<p>For some time, I have been increasingly interested in electricity demand statistics. Some witty folks are using <strong><a href="https://demanda.ree.es/demanda.html">demanda.ree.es</a>, a Flash visualizer for power generation and demand in Spain</strong>, to measure interesting stuff such as the impact of turn-off-the-lights protests or solidarity acts (<a href="http://rinzewind.org/archives/2007/02/01/felicidades-han-sido-ustedes-un-glitch-en-el-sistema/">1</a>) or the success of a general strike (<a href="http://politikon.es/2012/03/29/estimando-el-seguimiento-de-la-huelga-en-tiempo-real/">1</a>, <a href="http://rinzewind.org/archives/2012/11/14/y-asi-va-la-huelga-respecto-a-huelgas-anteriores/">2</a>, <a href="http://politikon.es/2012/11/29/como-estimar-el-impacto-de-una-huelga-via-demanda-electrica/">3</a>). These uses are really exciting and I think we can get much more out of this kind of data. <strong>So I decided to provide easy access to it.</strong></p>
+<h2>How?</h2>
+<p>Let&#39;s go to <a href="https://demanda.ree.es/demanda.html"><a href="https://demanda.ree.es/demanda.html">https://demanda.ree.es/demanda.html</a></a> and fire up Google Developer Tools.</p>
+<pre><code>GET https://demanda.ree.es/WSVisionaV01/wsDemanda30Service?WSDL
+GET https://demanda.ree.es/WSVisionaV01/wsDemanda30FinoService?WSDL
+GET https://demanda.ree.es/WSVisionaV01/wsDemanda30Service?xsd=1
+GET https://demanda.ree.es/WSVisionaV01/wsDemanda30FinoService?xsd=1
+POST https://demanda.ree.es/WSVisionaV01/wsDemanda30FinoService
+POST https://demanda.ree.es/WSVisionaV01/wsDemanda30Service
+POST https://demanda.ree.es/WSVisionaV01/wsDemanda30FinoService
+POST https://demanda.ree.es/WSVisionaV01/wsDemanda30FinoService</code></pre>
+<p>Great! It&#39;s just a SOAP web service. This is going to be easy. A Python script using <a href="https://fedorahosted.org/suds/">suds</a> will do... well, <em>not so fast</em>.</p>
+<p>The first request is a call to the <code>consultaTiempo</code>, a method that returns the current time. It works. But the rest of methods require a parameter <code>clave</code> (Spanish for <code>key</code>). <em>Dammit</em>. And it&#39;s not just some constant API key that I can copy from Developer Tools to my script. It changes every few seconds and the older ones are no longer valid. Every time there is a call to <code>consultaTiempo</code>, the key changes. Hey! That means it&#39;s time-based!</p>
+<p>After a quick analysis between some timestamps and their corresponding times, I realize that keys increase at a constant rate and they are strongly correlated to the timestamp. Each unit increase in the key corresponds to roughly 1 second in time. But I cannot figure it out.</p>
+<p>So I downloaded the <a href="https://demanda.ree.es/VisionaFlexCO2.swf">swf</a> and disasembled the code with <a href="http://swftools.org/">swftools</a>&#39;s swfdump.</p>
+<p>Here it is. It always calls the <code>consultaTiempo</code> method just before retrieving some data:</p>
+<pre><code>00024) + 1:1 pushstring &quot;consultaTiempo&quot;
+00025) + 2:1 findpropstrict &lt;q&gt;[private]VisionaFlexCO2::_VisionaFlexCO2_Operation2_c
+00026) + 3:1 callproperty &lt;q&gt;[private]VisionaFlexCO2::_VisionaFlexCO2_Operation2_c, 0 params
+00027) + 3:1 pushstring &quot;prevProgFino&quot;
+...
+00030) + 5:1 pushstring &quot;valoresMaxMinFino&quot;</code></pre>
+<p>Following the function calls, I get to a function called <code>prueba</code> (Spanish for <code>test</code>). That&#39;s funny. It looks as if they &quot;ofuscated&quot; the key-generation function under a non-important name. But the key is generated there, and it seems an easy operation:</p>
+<pre><code>00023) + 0:1 getlocal_2
+00024) + 1:1 pushbyte 5
+00025) + 2:1 dup.
+00026) + 3:1 callproperty &lt;q&gt;[namespace]http://adobe.com/AS3/2006/builtin::substr, 2 params
+00027) + 1:1 coerce_s
+00028) + 1:1 setlocal_2
+00030) + 0:1 findpropstrict &lt;q&gt;[public]::parseFloat
+00031) + 1:1 getlocal_2
+00032) + 2:1 callproperty &lt;q&gt;[public]::parseFloat, 1 params
+00033) + 1:1 convert_d
+00034) + 1:1 setlocal_3
+00036) + 0:1 getlocal_3
+00037) + 1:1 pushdouble 1.307000
+00038) + 2:1 divide.
+00039) + 1:1 convert_d
+00040) + 1:1 setlocal_3
+00042) + 0:1 getlocal_3
+00043) + 1:1 convert_i
+00044) + 1:1 setlocal r4
+00046) + 0:1 findproperty &lt;q&gt;[private]VisionaFlexCO2::clave</code></pre>
+<p>Ok. Got it. So I already have the Python equivalent:</p>
+<pre><code class="lang-python">key = str(int(float(timestamp[<span class="number">5</span>:<span class="number">10</span>])/ <span class="number">1.307000</span>))</code></pre>
+<p>Yay! It works! The only thing missing are a few SOAP calls and some boring JSON dumping code.</p>
+<h2>Show me the code!</h2>
+<p>The resulting script for fetching all historic data and generatic some graphs can be found in <a href="https://github.com/smola/ree-demanda">ree-demanda repo at GitHub</a>. Everything it&#39;s pretty basic, but it gets the job done.</p>
+<h2>Data, NOW</h2>
+<p>I fetched all historic data from the web service and consolidated it in a single CSV file. You can find it at <a href="https://github.com/smola/ree-demanda"><a href="https://github.com/smola/ree-demanda">https://github.com/smola/ree-demanda</a></a>. I plan to update it regularly and, eventually, set up a simple REST API to query it. In the mean time, if you find it is outdated, poke me at santi@mola.io and I will update it.</p>
+<h2>Visualization example</h2>
+<p>Here is a visual example of the data. Power generated since 2007 in Spain. Each line is a different power source. Data is relative to the total power demand at a given time.</p>
+<p><img src="//mola.io/img/ree_monthly_relative.png" alt="Power generation by source in Spain; 2007-2013"></p>
+<h2>Ideas?</h2>
+<p>What would you do with this data? Are you interested in a specific graph, crossing it with other data sources? Would it be useful for an online service? What knowledge can be obtained out of it?</p>
+<p>If you have any idea, please, use the comments or write me at santi@mola.io.</p>
+
+          </div>
+
+          <aside role="meta">
+            <div role="tags">
+              <span role="icon" aria-hidden="true" class="icon-tag"></span><span>Tags:</span>
+                <a href="/tag/unlocking-data">unlocking-data</a>&nbsp;
+                <a href="/tag/open-data">open-data</a>&nbsp;
+                <a href="/tag/projects">projects</a>&nbsp;
+                <a href="/tag/graphs">graphs</a>&nbsp;
+                <a href="/tag/soap">soap</a>&nbsp;
+            </div>
+            <div role="social_media">
+            </div>
+          </aside>
+
+          <div class="disqus-block">
+            <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_shortname = 'molaio';
+                var disqus_identifier = '/2013/08/29/unlocking-data-spain-power-generation';
+                var disqus_title = 'Unlocking data: Power generation statistics in Spain';
+                var disqus_url = 'http://mola.io/2013/08/29/unlocking-data-spain-power-generation';
+
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+          </div>
+
+        </article>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+    </div> 
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <p>
+            Copyright &copy; 2015 Santiago M. Mola
+            </p>
+            <p>
+            Content is released under the <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 license</a>.
+            </p>
+            <p>
+            Source code for this blog is released under the <a href="#">MIT license</a> at <a href="http://github.com/smola/smola.github.io">GitHub</a>.
+            </p>
+        </div>
+          <div class="col-lg-6">
+            <p>
+            Powered by <a href="http://laktek.github.io/punch/">Punch</a>, <a href="http://getbootstrap.com/">Bootstrap 3</a>, <a href="http://jquery.com">jQuery</a>, <a href="https://github.com/scottjehl/Respond">Respond.js</a>, <a href="http://softwaremaniacs.org/soft/highlight/en/">Highlight.js</a> and other stuff.
+            </p>
+        </div>
+      </div>
+    </footer>
+
+    <!--[if lt IE 9]>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]><!-->
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!--<![endif]-->
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.0.3.min.js"><\/script>')</script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.min.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+      <title>mola.io</title>
+
+    <link rel="alternate" type="application/rss+xml" title="mola.io" href="http://feeds.feedburner.com/molaio?format=xml">
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/main-1422312081000.css">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css">
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome-ie7.min.css">
+    <![endif]-->
+
+    <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+
+    <!-- fonts -->
+    <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script><script>  WebFont.load({"google":{"families":["Monda"]}}  );</script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-43666029-1', 'mola.io');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="wrap">
+
+      <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+      <![endif]-->
+
+      <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">mola.io</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/archive">Archive</a></li>
+          </ul>
+          <ul class="social-icons nav navbar-nav navbar-right">
+            <li><a href="http://github.com/smola"><i class="icon-github"></i></a></li>
+            <li><a href="http://twitter.com/mola_io"><i class="icon-twitter"></i></a></li>
+            <li><a href="http://linkedin.com/in/santiagomola"><i class="icon-linkedin"></i></a></li>
+            <li><a href="https://plus.google.com/107710791533787214572?rel=author"><i class="icon-google-plus"></i></a></li>
+            <!-- TODO: No icon: <li><a href="http://ohloh.mola.io">Ohloh</a></li> -->
+          </ul>
+        </div>
+      </nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+
+
+      <div id="main-content">
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+          <h2 class="entry-title" itemprop="name headline">Swapping languages in a Gettext PO file</h2>
+            <time class="updated" datetime="2013-09-16T22:00:00.000Z" pubdate itemprop="datePublished">17 September 2013</time>
+
+          <div class="entry-content" itemprop="articleBody">
+            <p><em>TL;DR: Here you have a script for swapping the source and target language of a Gettext PO file. <a href="https://gist.github.com/smola/6600778">Grab it.</a></em></p>
+<p>For the first time, I&#39;m working on a project that requires full internationalization (<em>i.e.</em> <a href="http://chivalo.com">Chívalo!</a>).
+So far, I have learned 3 things: 1) Internationalization is much harder than I&#39;ve ever thought, 2) most tools suck,
+3) most Java developers seem to live in a bubble where Gettext never happened. Those will be interesting topics for
+other posts, but today I&#39;ll just explain how to solve a simple problem: swapping source and target languages
+of a Gettext PO file.</p>
+<p>We started <a href="http://chivalo.com">Chívalo!</a> as a Spanish-only website, but we always kept in mind that it would
+go international, eventually. We externalized messages to a file referenced by keys (<em>e.g.</em> <code>nav.home=Home</code>).
+This is what most people seem to be doing with Play and the <a href="http://www.playframework.com/documentation/2.1.x/JavaI18N">officially encouraged mechanism</a>.
+We quickly realized that this approach sucks big time.<sup><a class="fn-ref" id="fn1-ref1" href="#fn1">1</a></sup> Then we switched to using Spanish strings as keys, and decided that we would find or create the proper tool to use them at some point.</p>
+<p>The point of starting real internationalization arrived. We picked Gettext, extracted the strings,
+and translated everything to English in a PO file. Now it&#39;s time to switch the development to English-first.
+So we wrote a script to replace every Spanish string with the English equivalent by using the <code>en-US.po</code> file.</p>
+<p>The only thing missing is swapping the source language (Spanish) and the target language (English) in <code>en-US.po</code>
+so that we get the new <code>es-ES.po</code>. I&#39;d thought this would be the easiest part. I was surprised to find out
+that there seems to be no quick way of doing this.<sup><a class="fn-ref" id="fn2-ref1" href="#fn2">2</a></sup></p>
+<p>Here&#39;s a script for doing this with just a simple command:</p>
+<script src="https://gist.github.com/smola/6600778.js"></script>
+
+<aside class="footnotes">
+
+<div class="fn">
+  <sup><a id="fn1" class="fn-backref" href="#fn1-ref1">1</a></sup> Using logic keys for localized strings involves one of the two hardest things in Computer Science: naming things. This is particularly bad for the Web. After around three months of development, we needed a couple of scripts just to periodically check untranslated strings, unused strings, take care of renaming keys so that they remain consistent... The added indirection layer of localization keys (hundreds of them) was something that we had to keep always in mind without getting any real benefit for it.
+</div>
+
+<div class="fn">
+  <sup><a id="fn2" class="fn-backref" href="#fn2-ref1">2</a></sup> Gettext does not seem to support it. <a href="http://stackoverflow.com/questions/4700189/switch-gettext-translated-language-with-original-language">StackOverlow had an answer</a> providing a convoluted method that just did not work on Ubuntu Precise.
+</div>
+
+</aside>
+          </div>
+
+          <aside role="meta">
+            <div role="tags">
+              <span role="icon" aria-hidden="true" class="icon-tag"></span><span>Tags:</span>
+                <a href="/tag/python">python</a>&nbsp;
+                <a href="/tag/i18n">i18n</a>&nbsp;
+            </div>
+            <div role="social_media">
+            </div>
+          </aside>
+
+          <div class="disqus-block">
+            <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_shortname = 'molaio';
+                var disqus_identifier = '/2013/09/17/swapping-languages-in-gettext-po-file';
+                var disqus_title = 'Swapping languages in a Gettext PO file';
+                var disqus_url = 'http://mola.io/2013/09/17/swapping-languages-in-gettext-po-file';
+
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+          </div>
+
+        </article>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+    </div> 
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <p>
+            Copyright &copy; 2015 Santiago M. Mola
+            </p>
+            <p>
+            Content is released under the <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 license</a>.
+            </p>
+            <p>
+            Source code for this blog is released under the <a href="#">MIT license</a> at <a href="http://github.com/smola/smola.github.io">GitHub</a>.
+            </p>
+        </div>
+          <div class="col-lg-6">
+            <p>
+            Powered by <a href="http://laktek.github.io/punch/">Punch</a>, <a href="http://getbootstrap.com/">Bootstrap 3</a>, <a href="http://jquery.com">jQuery</a>, <a href="https://github.com/scottjehl/Respond">Respond.js</a>, <a href="http://softwaremaniacs.org/soft/highlight/en/">Highlight.js</a> and other stuff.
+            </p>
+        </div>
+      </div>
+    </footer>
+
+    <!--[if lt IE 9]>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]><!-->
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!--<![endif]-->
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.0.3.min.js"><\/script>')</script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.min.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+      <title>mola.io</title>
+
+    <link rel="alternate" type="application/rss+xml" title="mola.io" href="http://feeds.feedburner.com/molaio?format=xml">
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/main-1422312081000.css">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css">
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome-ie7.min.css">
+    <![endif]-->
+
+    <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+
+    <!-- fonts -->
+    <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script><script>  WebFont.load({"google":{"families":["Monda"]}}  );</script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-43666029-1', 'mola.io');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="wrap">
+
+      <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+      <![endif]-->
+
+      <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">mola.io</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/archive">Archive</a></li>
+          </ul>
+          <ul class="social-icons nav navbar-nav navbar-right">
+            <li><a href="http://github.com/smola"><i class="icon-github"></i></a></li>
+            <li><a href="http://twitter.com/mola_io"><i class="icon-twitter"></i></a></li>
+            <li><a href="http://linkedin.com/in/santiagomola"><i class="icon-linkedin"></i></a></li>
+            <li><a href="https://plus.google.com/107710791533787214572?rel=author"><i class="icon-google-plus"></i></a></li>
+            <!-- TODO: No icon: <li><a href="http://ohloh.mola.io">Ohloh</a></li> -->
+          </ul>
+        </div>
+      </nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+
+
+      <div id="main-content">
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+          <h2 class="entry-title" itemprop="name headline">Bing: Weird Query Rewriting</h2>
+            <time class="updated" datetime="2013-12-02T23:00:00.000Z" pubdate itemprop="datePublished">03 December 2013</time>
+
+          <div class="entry-content" itemprop="articleBody">
+            <p><em>TL;DR: Bing query rewriting is completely absurd.</em></p>
+<p>I rarely use <a href="http://bing.com">Bing</a>, but now I have to do it from time to time for SEO purposes.
+It was a completely WTF moment when <a href="http://www.bing.com/search?q=chivalo">I queried it for &quot;Chivalo&quot;</a>.
+See the results for Bing in Spanish:</p>
+<ol>
+<li>Ch - Wikipedia, la enciclopedia libre - es.wikipedia.org/wiki/Ch</li>
+<li>Carolina Herrera - www.carolinaherrera.com</li>
+<li>.ch - Wikipedia, la enciclopedia libre - es.wikipedia.org/wiki/.ch</li>
+</ol>
+<p>What? No result contains the keyword <em>chivalo</em> in the title, URL, snippet or content. <strong>The query has been
+rewritten from <em>chivalo</em> to just <em>ch</em>.</strong></p>
+<p>Let&#39;s try for <em>chívalo</em> (note the <em>í</em> which is the correct spelling for the Spanish word)...</p>
+<ol>
+<li>Ferdinand Cheval - Wikipedia, la enciclopedia libre - es.wikipedia.org/wiki/Ferdinand_Cheval</li>
+<li>Château Cheval Blanc - Wikipedia, la enciclopedia libre - es.wikipedia.org/wiki/Château_Cheval_Blanc</li>
+<li>Cheval - Wikipédia - fr.wikipedia.org/wiki/Cheval</li>
+</ol>
+<p>Alright. <em>chívalo</em> is rewritten to <em>cheval</em>. Two different words from two different languages (Spanish and French)
+with no relation at all.</p>
+<p>Let&#39;s try Bing UK:</p>
+<ol>
+<li>George Chuvalo - Wikipedia, the free encyclopedia - en.wikipedia.org/wiki/George_Chuvalo</li>
+<li>Chivalo - Discover, collect, buy - chivalo.com</li>
+<li>George Chuvalo - IMDb - www.imdb.com/name/nm0161546</li>
+</ol>
+<p>Hey. Our website appears as the second result. But no other related results are shown, and completely unrelated
+results for <em>Chuvalo</em> are included. At least, in this case, I get a message explaining what&#39;s happening
+(<em>Including results for chuvalo. Do you want results for chivalo only?</em>) which was not the case for Bing in
+Spanish.</p>
+<p><strong>To the Bing guys: Chivalo can be a few things:</strong></p>
+<ol>
+<li>A Spanish word (<em>chívalo</em>) for <em>gossip it</em>. It&#39;s quite unusual, but it&#39;s a form of the verb <em>chivar</em>.</li>
+<li>A Spanish family name.</li>
+<li><strong><a href="http://chivalo.com">Chivalo.com</a> (my startup)</strong></li>
+<li><a href="https://www.google.es/maps/preview#!q=-24.1958333+%2C34.5416667&amp;data=!1m4!1m3!1d3128!2d34.5396333!3d-24.1961326!2m1!1e3!4m14!2m13!1m12!3m8!1m3!1d6262!2d34.7289204!3d-24.0622766!3m2!1i1364!2i660!4f13.1!4m2!3d-24.1958333!4d34.5416667&amp;fid=7">A small village in Mozambique.</a> It&#39;s not recognized by Google Maps, but it&#39;s there.</li>
+<li><a href="http://www.chivalo.nl/" rel="nofollow">A small dutch store.</a></li>
+<li>A few more things that are barely findable.</li>
+</ol>
+<p><strong>None of them have any relation with <em>CH</em>, <em>Chuvalo</em> or <em>cheval</em>, at all. You are trying to be too smart, and you look dumb instead.</strong></p>
+<p>For search results that make sense, try <a href="https://duckduckgo.com/?q=chivalo">DuckDuckGo</a> or <a href="https://www.google.es/#q=chivalo">Google</a>.</p>
+
+          </div>
+
+          <aside role="meta">
+            <div role="tags">
+              <span role="icon" aria-hidden="true" class="icon-tag"></span><span>Tags:</span>
+                <a href="/tag/seo">seo</a>&nbsp;
+                <a href="/tag/information retrieval">information retrieval</a>&nbsp;
+                <a href="/tag/microsoft">microsoft</a>&nbsp;
+                <a href="/tag/bing">bing</a>&nbsp;
+            </div>
+            <div role="social_media">
+            </div>
+          </aside>
+
+          <div class="disqus-block">
+            <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_shortname = 'molaio';
+                var disqus_identifier = '/2013/12/03/bing-weird-query-rewriting';
+                var disqus_title = 'Bing: Weird Query Rewriting';
+                var disqus_url = 'http://mola.io/2013/12/03/bing-weird-query-rewriting';
+
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+          </div>
+
+        </article>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+    </div> 
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <p>
+            Copyright &copy; 2015 Santiago M. Mola
+            </p>
+            <p>
+            Content is released under the <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 license</a>.
+            </p>
+            <p>
+            Source code for this blog is released under the <a href="#">MIT license</a> at <a href="http://github.com/smola/smola.github.io">GitHub</a>.
+            </p>
+        </div>
+          <div class="col-lg-6">
+            <p>
+            Powered by <a href="http://laktek.github.io/punch/">Punch</a>, <a href="http://getbootstrap.com/">Bootstrap 3</a>, <a href="http://jquery.com">jQuery</a>, <a href="https://github.com/scottjehl/Respond">Respond.js</a>, <a href="http://softwaremaniacs.org/soft/highlight/en/">Highlight.js</a> and other stuff.
+            </p>
+        </div>
+      </div>
+    </footer>
+
+    <!--[if lt IE 9]>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]><!-->
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!--<![endif]-->
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.0.3.min.js"><\/script>')</script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.min.js"></script>
+
+  </body>
+</html>

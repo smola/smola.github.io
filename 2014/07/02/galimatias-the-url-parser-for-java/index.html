@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+      <title>mola.io</title>
+
+    <link rel="alternate" type="application/rss+xml" title="mola.io" href="http://feeds.feedburner.com/molaio?format=xml">
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/main-1422312081000.css">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css">
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome-ie7.min.css">
+    <![endif]-->
+
+    <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+
+    <!-- fonts -->
+    <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script><script>  WebFont.load({"google":{"families":["Monda"]}}  );</script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-43666029-1', 'mola.io');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="wrap">
+
+      <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+      <![endif]-->
+
+      <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">mola.io</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/archive">Archive</a></li>
+          </ul>
+          <ul class="social-icons nav navbar-nav navbar-right">
+            <li><a href="http://github.com/smola"><i class="icon-github"></i></a></li>
+            <li><a href="http://twitter.com/mola_io"><i class="icon-twitter"></i></a></li>
+            <li><a href="http://linkedin.com/in/santiagomola"><i class="icon-linkedin"></i></a></li>
+            <li><a href="https://plus.google.com/107710791533787214572?rel=author"><i class="icon-google-plus"></i></a></li>
+            <!-- TODO: No icon: <li><a href="http://ohloh.mola.io">Ohloh</a></li> -->
+          </ul>
+        </div>
+      </nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+
+
+      <div id="main-content">
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+          <h2 class="entry-title" itemprop="name headline">galimatias — The URL Parser For Java</h2>
+            <time class="updated" datetime="2014-07-01T22:00:00.000Z" pubdate itemprop="datePublished">02 July 2014</time>
+
+          <div class="entry-content" itemprop="articleBody">
+            <p>Today, I have released the 0.1.0 version of <a href="http://galimatias.mola.io">galimatias</a> — The URL Parser For Java. Now that I left the 0.0.x world behind, it&#39;s a good time for a post.</p>
+<p>Parsing a URL is supposed to be an easy task. It&#39;s supposed to be working out of the box by the standard libraries of most programming languages. But the fact is that it isn&#39;t something widely supported.</p>
+<p>Over the years, web authors have produced all kind of URLs using different features, funky characters, unescaped non-ASCII characters, partially broken constructs, internationalized domain names (AKA <a href="http://annevankesteren.nl/2014/06/url-unicode">IDNA Hell</a>), etcetera. StackOverflow is <a href="http://stackoverflow.com/questions/161738/what-is-the-best-regular-expression-to-check-if-a-string-is-a-valid-url/190405#190405">full</a> <a href="http://stackoverflow.com/questions/3138941/how-to-verify-that-url-is-valid-in-java-1-6/22482467#22482467">of</a> <a href="http://stackoverflow.com/questions/1178024/can-a-url-contain-a-semi-colon/1178053#1178053">cases</a> <a href="http://stackoverflow.com/questions/6868373/url-error-exceptionillegal-character-in-query-at-index-185">illustrating</a> <a href="http://stackoverflow.com/questions/1547899/which-characters-make-a-url-invalid/13500078#13500078">this</a>.</p>
+<p>Web browsers have added more and more cases in order to support all cases. And now, there is finally a proper <a href="http://url.spec.whatwg.org">URL Standard</a> by the WHATWG which is gaining traction among web browser vendors. But non-browser libraries are falling behind.</p>
+<p><a href="http://galimatias.mola.io">galimatias</a> born to fill this gap in the JVM world. Some highlights:</p>
+<ul>
+<li>If a web browser can parse a URL as found in the wild, galimatias can parse it too.</li>
+<li>Provides efficient tools for further normalization of URL beyond parsing,
+which are particularly useful for web crawlers.</li>
+<li>It&#39;s used by the <a href="http://validator.nu/">HTML5 validator</a> (thanks to <a href="http://people.w3.org/mike//">Michael
+Smith</a>!).</li>
+<li>It&#39;s the first implementation of the URL Standard in Java.</li>
+<li>To the best of my knowledge, it&#39;s the second idependent implementation of the URL Standard (the first being the <a href="https://github.com/annevk/url">JavaScript implementation</a> by <a href="http://annevankesteren.nl/">Anne van Kesteren</a>.</li>
+</ul>
+<p>And finally, an example:</p>
+<pre><code class="lang-java"><span class="comment">// Let's get a funky URL</span>
+String urlString = <span class="string">" http:/日本.jp:80//.././[ FÜNKY ] "</span>;
+
+<span class="comment">// Parse it</span>
+URL url = URL.parse(urlString);
+
+System.out.println(url);
+<span class="comment">// OUTPUT: http://xn--wgv71a.jp/[%20F%C3%9CNKY%20]</span>
+
+System.out.println(url.toHumanString());
+<span class="comment">// OUTPUT: http://日本.jp/[ FÜNKY ]</span>
+
+
+<span class="comment">// URLs can be modified with a fluent API</span>
+URL modifiedURL = url.withQuery(<span class="string">" let's do some query about 日本 "</span>).withFragment(<span class="string">" and a fragment"</span>);
+
+System.out.println(modifiedURL);
+<span class="comment">// OUTPUT: http://xn--wgv71a.jp/[%20F%C3%9CNKY%20]?let's%20do%20some%20query%20about%20%E6%97%A5%E6%9C%AC#and a fragment</span>
+
+System.out.println(modifiedURL.toHumanString());
+<span class="comment">// OUTPUT: http://日本.jp/[ FÜNKY ]?let's do some query about 日本#and a fragment</span>
+
+
+<span class="comment">// And there are convenient canonicalizers to get URLs to a standard form</span>
+
+String differentUrlString = <span class="string">"http:/日本.jp/[20%46%c3%9c%4e%4B%59%20]"</span>;
+URL differentURL = URL.parse(differentUrlString);
+System.out.println(differentURL);
+<span class="comment">// OUTPUT: http://xn--wgv71a.jp/[%20%46%C3%9C%4E%4B%59%20]</span>
+
+URLCanonicalizer canonicalizer = <span class="keyword">new</span> DecodeUnreservedCanonicalizer();
+URL canonicalizedURL = canonicalizer.canonicalize(differentURL);
+System.out.println(canonicalizedURL.toString());
+<span class="comment">// OUTPUT: http://xn--wgv71a.jp/[%20%46%C3%9C%4E%4B%59%20]</span>
+System.out.println(canonicalizedURL.toHumanString());
+<span class="comment">// OUTPUT: http://日本.jp/[ FÜNKY ]</span></code></pre>
+<p>That&#39;s it! Go get it at <a href="https://github.com/smola/galimatias">GitHub</a> or <a href="https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22galimatias%22">Maven
+Central</a>!</p>
+
+          </div>
+
+          <aside role="meta">
+            <div role="tags">
+              <span role="icon" aria-hidden="true" class="icon-tag"></span><span>Tags:</span>
+                <a href="/tag/galimatias">galimatias</a>&nbsp;
+                <a href="/tag/open-source">open-source</a>&nbsp;
+                <a href="/tag/projects">projects</a>&nbsp;
+                <a href="/tag/java">java</a>&nbsp;
+                <a href="/tag/url">url</a>&nbsp;
+                <a href="/tag/whatwg">whatwg</a>&nbsp;
+                <a href="/tag/standards">standards</a>&nbsp;
+                <a href="/tag/web">web</a>&nbsp;
+            </div>
+            <div role="social_media">
+            </div>
+          </aside>
+
+          <div class="disqus-block">
+            <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_shortname = 'molaio';
+                var disqus_identifier = '/2014/07/02/galimatias-the-url-parser-for-java';
+                var disqus_title = 'galimatias — The URL Parser For Java';
+                var disqus_url = 'http://mola.io/2014/07/02/galimatias-the-url-parser-for-java';
+
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+          </div>
+
+        </article>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+    </div> 
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <p>
+            Copyright &copy; 2015 Santiago M. Mola
+            </p>
+            <p>
+            Content is released under the <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 license</a>.
+            </p>
+            <p>
+            Source code for this blog is released under the <a href="#">MIT license</a> at <a href="http://github.com/smola/smola.github.io">GitHub</a>.
+            </p>
+        </div>
+          <div class="col-lg-6">
+            <p>
+            Powered by <a href="http://laktek.github.io/punch/">Punch</a>, <a href="http://getbootstrap.com/">Bootstrap 3</a>, <a href="http://jquery.com">jQuery</a>, <a href="https://github.com/scottjehl/Respond">Respond.js</a>, <a href="http://softwaremaniacs.org/soft/highlight/en/">Highlight.js</a> and other stuff.
+            </p>
+        </div>
+      </div>
+    </footer>
+
+    <!--[if lt IE 9]>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]><!-->
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!--<![endif]-->
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.0.3.min.js"><\/script>')</script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.min.js"></script>
+
+  </body>
+</html>

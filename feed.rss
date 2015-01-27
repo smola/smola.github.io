@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+  <title>mola.io</title>
+  <atom:link href="http://mola.io/feed/" rel="self" type="application/rss+xml" />
+  <link>http://mola.io</link>
+  <description></description>
+	<lastBuildDate>Tue, 27 Jan 2015 23:17:03 GMT</lastBuildDate>
+	<language>en</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+
+		<item>
+		<title>Vodafone Spain's web blocking system</title>
+      <link>http://mola.io/2015/01/26/vodafone-spain-web-blocking-system</link>
+      <comments>http://mola.io/2015/01/26/vodafone-spain-web-blocking-system/#comments</comments>
+      <pubDate>Sun, 25 Jan 2015 23:00:00 GMT</pubDate>
+      <dc:creator>Santiago M. Mola</dc:creator>
+
+      <category><![CDATA[censorship]]></category>
+
+      <guid isPermaLink="true">http://mola.io/2015/01/26/vodafone-spain-web-blocking-system</guid>
+			<description><![CDATA[<p>Vodafone Spain is deploying a new web blocking system dubbed Castor. This is the first time that a Spanish ISP has taken the web blocking beyond the DNS or IP level. They&#39;re performing large-scale <a href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack">Man-in-the-Middle attacks</a>, intercepting HTTP requests to some website&#39;s IPs and serving an HTML redirect to their blocking system instead.</p>
+<p>The blocking system has received a lot of public exposure when <a href="https://thepiratebay.se">The Pirate Bay</a> was included in the blocking list. The block affected only a few broadband customers since December 2014, but on January 26th the block was deployed to the whole Vodafone network, affecting most (if not all) customers.</p>
+<p><em>Update: as of January 27th, the Vodafone Spain unblocked The Pirate Bay until it receives a court order.</em></p>
+<p>Vodafone Spain has depoloyed a <a href="http://en.wikipedia.org/wiki/Deep_packet_inspection">Deep Packet Inspection (DPI)</a> for <em>parental control</em> by <a href="http://www.optenet.es/en-us/">Optenet</a> under codename <a href="http://castor.vodafone.es">Castor</a>. This system inspects HTTP traffic from every Vodafone customer looking for patterns that match some rules. In this case, it intercepted HTTP request with the header <code>Host: thepiratebay.se</code>.</p>
+<p>In a way, this is much more sophisticated than the traditional DNS or IP block. However, it&#39;s still completely ineffective: HTTPS traffic is not affected, <a href="http://thepiratebay.se">http://thepiratebay.se</a> is blocked, but http<strong>s</strong>://thepiratebay.se is not.</p>
+<h2>More info</h2>
+<p><strong>More on the TPB block by Vodafone Spain:</strong></p>
+<ul>
+<li><a href="http://torrentfreak.com/spanish-government-orders-pirate-bay-blockade-150127/">TorrentFreak: Spanish Government orders Pirate Bay blockade</a> (<a href="https://archive.today/uHWJw">archive</a>)</li>
+<li><a href="http://www.bitcloud.es/2014/12/censura-de-vodafone-fibra.html?m=1">Bitcloud: Censura de Vodafone Fibra</a> (<a href="https://archive.today/Xd32N">archive</a>) <em>(Spanish)</em></li>
+</ul>
+<p><strong>More on Optenet&#39;s and Vodafone&#39;s DPI systems:</strong></p>
+<ul>
+<li><a href="http://www.optenet.es/en-us/webfilter.asp">Optenet: WebFilter - Internet Filtering &amp; Application Management</a> (<a href="https://archive.today/tYmk2">archive</a>)</li>
+<li><a href="http://www.optenet.es/en-us/solutions-telecom.asp">Optenet: Multitenant Internet Security Solutions for Telco</a> (<a href="https://archive.today/Sjt3G">archive</a>)</li>
+<li><a href="http://broabandtrafficmanagement.blogspot.com.es/2011/06/dpi-deployments-74-vodafone-turkey-uses.html">Broadband Traffic Management: DPI Deployments (74): Vodafone Turkey Uses Optenet and Allot for Web Filtering</a> (<a href="https://archive.today/LqinI">archive</a>)</li>
+</ul>
+<h2>The technical details</h2>
+<p>Here&#39;s a sample of what we get when we perform a request to thepiratebay.org (with DNS resolving to the right IP):</p>
+<pre><code class="lang-bash">$ curl -v http://thepiratebay.org
+* About to connect() to thepiratebay.org port 80 (<span class="comment">#0)</span>
+*   Trying 80.92.65.144... connected
+&gt; GET / HTTP/1.1
+&gt; User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
+&gt; Host: thepiratebay.org
+&gt; Accept: */*
+&gt; 
+&lt; HTTP/1.1 200 OK
+&lt; Pragma: no-cache
+&lt; Cache-Control: no-cache
+&lt; Expires: -1
+&lt; Content-Length: 640
+&lt; Content-Type: text/html
+&lt; 
+&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=<span class="string">"refresh"</span> content=<span class="string">"0; url=http://castor.vodafone.es/public/stoppages/stop.htmopt?CAT=%5Bp2p_servers-lg%7CVDFLegal-lu%5D&amp;RULE=%5BPoliticaLegal%5D&amp;DATETIME=%5B26/Jan/2015:23:32:14%5D&amp;FILE=-&amp;CODE=06de8af1c97a7e4a6a74a83eba063d40fee3f29ce9f246546bf8b3237503f730a902db232a8b86f9d577b9f62db0c7e8e959f5fd91ea8f8e3607d4c824db1d8f79ef996cba9b33da07a38f63c32211bd39275e99f61120df&amp;LANG=esp&amp;optcheckwfsp=%29%3E%E8%05%EB%E5%A5%2C%2BA%AF%A8u%F7%C1%17%B87%C1e&amp;URL=http://thepiratebay.org/&amp;ui=D6Ime4pzx5jhP%2FHbLzMZomjBakeo0jkVKrJXvhphCbORHbWu7q6J638wQ702CwB1&amp;IP=077.231.234.167&amp;USER=-&amp;CLIENTID=-"</span>&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;
+* Connection <span class="comment">#0 to host thepiratebay.org left intact</span>
+* Closing connection <span class="comment">#0</span></code></pre>
+<p>The redirection goes to <a href="castor.vodafone.es">castor.vodafone.es</a> (212.73.40.87) a server running Optenet Web Server.</p>
+<p>A request to google.com adding the HTTP header &quot;Host: thepiratebay.org&quot; triggers the redirection too:</p>
+<pre><code class="lang-bash">$ curl -v -H <span class="string">"Host: thepiratebay.org"</span> http://google.com
+* About to connect() to google.com port 80 (<span class="comment">#0)</span>
+*   Trying 216.58.211.206... connected
+&gt; GET / HTTP/1.1
+&gt; User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
+&gt; Accept: */*
+&gt; Host: thepiratebay.org
+&gt; 
+&lt; HTTP/1.1 200 OK
+&lt; Pragma: no-cache
+&lt; Cache-Control: no-cache
+&lt; Expires: -1
+&lt; Content-Length: 640
+&lt; Content-Type: text/html
+&lt; 
+&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=<span class="string">"refresh"</span> content=<span class="string">"0; url=http://castor.vodafone.es/public/stoppages/stop.htmopt?CAT=%5Bp2p_servers-lg%7CVDFLegal-lu%5D&amp;RULE=%5BPoliticaLegal%5D&amp;DATETIME=%5B27/Jan/2015:00:03:57%5D&amp;FILE=-&amp;CODE=06de8af1c97a80496a77a83eba063d40fee3f29ce9f246546bf8b3237503f730a902db232a8b86f9d577b9f62db0c7e8e959f5fd91ea8f8e3607d4c824db1d8f79ef996cba9b33da07a38f63c32211bd39275e99f61120df&amp;LANG=esp&amp;optcheckwfsp=%29%3E%E8%05%EB%E5%A5%2C%2BA%AF%A8u%F7%C1%17%B87%C1e&amp;URL=http://thepiratebay.org/&amp;ui=D6Ime4pzx5jhP%2FHbLzMZomjBakeo0jkVKrJXvhphCbORHbWu7q6J638wQ702CwB1&amp;IP=077.231.234.167&amp;USER=-&amp;CLIENTID=-"</span>&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;
+* Connection <span class="comment">#0 to host google.com left intact</span>
+* Closing connection <span class="comment">#0</span></code></pre>
+]]></description>
+		</item>
+		<item>
+		<title>galimatias — The URL Parser For Java</title>
+      <link>http://mola.io/2014/07/02/galimatias-the-url-parser-for-java</link>
+      <comments>http://mola.io/2014/07/02/galimatias-the-url-parser-for-java/#comments</comments>
+      <pubDate>Tue, 01 Jul 2014 22:00:00 GMT</pubDate>
+      <dc:creator>Santiago M. Mola</dc:creator>
+
+      <category><![CDATA[galimatias]]></category>
+      <category><![CDATA[open-source]]></category>
+      <category><![CDATA[projects]]></category>
+      <category><![CDATA[java]]></category>
+      <category><![CDATA[url]]></category>
+      <category><![CDATA[whatwg]]></category>
+      <category><![CDATA[standards]]></category>
+      <category><![CDATA[web]]></category>
+
+      <guid isPermaLink="true">http://mola.io/2014/07/02/galimatias-the-url-parser-for-java</guid>
+			<description><![CDATA[<p>Today, I have released the 0.1.0 version of <a href="http://galimatias.mola.io">galimatias</a> — The URL Parser For Java. Now that I left the 0.0.x world behind, it&#39;s a good time for a post.</p>
+<p>Parsing a URL is supposed to be an easy task. It&#39;s supposed to be working out of the box by the standard libraries of most programming languages. But the fact is that it isn&#39;t something widely supported.</p>
+<p>Over the years, web authors have produced all kind of URLs using different features, funky characters, unescaped non-ASCII characters, partially broken constructs, internationalized domain names (AKA <a href="http://annevankesteren.nl/2014/06/url-unicode">IDNA Hell</a>), etcetera. StackOverflow is <a href="http://stackoverflow.com/questions/161738/what-is-the-best-regular-expression-to-check-if-a-string-is-a-valid-url/190405#190405">full</a> <a href="http://stackoverflow.com/questions/3138941/how-to-verify-that-url-is-valid-in-java-1-6/22482467#22482467">of</a> <a href="http://stackoverflow.com/questions/1178024/can-a-url-contain-a-semi-colon/1178053#1178053">cases</a> <a href="http://stackoverflow.com/questions/6868373/url-error-exceptionillegal-character-in-query-at-index-185">illustrating</a> <a href="http://stackoverflow.com/questions/1547899/which-characters-make-a-url-invalid/13500078#13500078">this</a>.</p>
+<p>Web browsers have added more and more cases in order to support all cases. And now, there is finally a proper <a href="http://url.spec.whatwg.org">URL Standard</a> by the WHATWG which is gaining traction among web browser vendors. But non-browser libraries are falling behind.</p>
+<p><a href="http://galimatias.mola.io">galimatias</a> born to fill this gap in the JVM world. Some highlights:</p>
+<ul>
+<li>If a web browser can parse a URL as found in the wild, galimatias can parse it too.</li>
+<li>Provides efficient tools for further normalization of URL beyond parsing,
+which are particularly useful for web crawlers.</li>
+<li>It&#39;s used by the <a href="http://validator.nu/">HTML5 validator</a> (thanks to <a href="http://people.w3.org/mike//">Michael
+Smith</a>!).</li>
+<li>It&#39;s the first implementation of the URL Standard in Java.</li>
+<li>To the best of my knowledge, it&#39;s the second idependent implementation of the URL Standard (the first being the <a href="https://github.com/annevk/url">JavaScript implementation</a> by <a href="http://annevankesteren.nl/">Anne van Kesteren</a>.</li>
+</ul>
+<p>And finally, an example:</p>
+<pre><code class="lang-java"><span class="comment">// Let's get a funky URL</span>
+String urlString = <span class="string">" http:/日本.jp:80//.././[ FÜNKY ] "</span>;
+
+<span class="comment">// Parse it</span>
+URL url = URL.parse(urlString);
+
+System.out.println(url);
+<span class="comment">// OUTPUT: http://xn--wgv71a.jp/[%20F%C3%9CNKY%20]</span>
+
+System.out.println(url.toHumanString());
+<span class="comment">// OUTPUT: http://日本.jp/[ FÜNKY ]</span>
+
+
+<span class="comment">// URLs can be modified with a fluent API</span>
+URL modifiedURL = url.withQuery(<span class="string">" let's do some query about 日本 "</span>).withFragment(<span class="string">" and a fragment"</span>);
+
+System.out.println(modifiedURL);
+<span class="comment">// OUTPUT: http://xn--wgv71a.jp/[%20F%C3%9CNKY%20]?let's%20do%20some%20query%20about%20%E6%97%A5%E6%9C%AC#and a fragment</span>
+
+System.out.println(modifiedURL.toHumanString());
+<span class="comment">// OUTPUT: http://日本.jp/[ FÜNKY ]?let's do some query about 日本#and a fragment</span>
+
+
+<span class="comment">// And there are convenient canonicalizers to get URLs to a standard form</span>
+
+String differentUrlString = <span class="string">"http:/日本.jp/[20%46%c3%9c%4e%4B%59%20]"</span>;
+URL differentURL = URL.parse(differentUrlString);
+System.out.println(differentURL);
+<span class="comment">// OUTPUT: http://xn--wgv71a.jp/[%20%46%C3%9C%4E%4B%59%20]</span>
+
+URLCanonicalizer canonicalizer = <span class="keyword">new</span> DecodeUnreservedCanonicalizer();
+URL canonicalizedURL = canonicalizer.canonicalize(differentURL);
+System.out.println(canonicalizedURL.toString());
+<span class="comment">// OUTPUT: http://xn--wgv71a.jp/[%20%46%C3%9C%4E%4B%59%20]</span>
+System.out.println(canonicalizedURL.toHumanString());
+<span class="comment">// OUTPUT: http://日本.jp/[ FÜNKY ]</span></code></pre>
+<p>That&#39;s it! Go get it at <a href="https://github.com/smola/galimatias">GitHub</a> or <a href="https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22galimatias%22">Maven
+Central</a>!</p>
+]]></description>
+		</item>
+		<item>
+		<title>Bing: Weird Query Rewriting</title>
+      <link>http://mola.io/2013/12/03/bing-weird-query-rewriting</link>
+      <comments>http://mola.io/2013/12/03/bing-weird-query-rewriting/#comments</comments>
+      <pubDate>Mon, 02 Dec 2013 23:00:00 GMT</pubDate>
+      <dc:creator>Santiago M. Mola</dc:creator>
+
+      <category><![CDATA[seo]]></category>
+      <category><![CDATA[information retrieval]]></category>
+      <category><![CDATA[microsoft]]></category>
+      <category><![CDATA[bing]]></category>
+
+      <guid isPermaLink="true">http://mola.io/2013/12/03/bing-weird-query-rewriting</guid>
+			<description><![CDATA[<p><em>TL;DR: Bing query rewriting is completely absurd.</em></p>
+<p>I rarely use <a href="http://bing.com">Bing</a>, but now I have to do it from time to time for SEO purposes.
+It was a completely WTF moment when <a href="http://www.bing.com/search?q=chivalo">I queried it for &quot;Chivalo&quot;</a>.
+See the results for Bing in Spanish:</p>
+<ol>
+<li>Ch - Wikipedia, la enciclopedia libre - es.wikipedia.org/wiki/Ch</li>
+<li>Carolina Herrera - www.carolinaherrera.com</li>
+<li>.ch - Wikipedia, la enciclopedia libre - es.wikipedia.org/wiki/.ch</li>
+</ol>
+<p>What? No result contains the keyword <em>chivalo</em> in the title, URL, snippet or content. <strong>The query has been
+rewritten from <em>chivalo</em> to just <em>ch</em>.</strong></p>
+<p>Let&#39;s try for <em>chívalo</em> (note the <em>í</em> which is the correct spelling for the Spanish word)...</p>
+<ol>
+<li>Ferdinand Cheval - Wikipedia, la enciclopedia libre - es.wikipedia.org/wiki/Ferdinand_Cheval</li>
+<li>Château Cheval Blanc - Wikipedia, la enciclopedia libre - es.wikipedia.org/wiki/Château_Cheval_Blanc</li>
+<li>Cheval - Wikipédia - fr.wikipedia.org/wiki/Cheval</li>
+</ol>
+<p>Alright. <em>chívalo</em> is rewritten to <em>cheval</em>. Two different words from two different languages (Spanish and French)
+with no relation at all.</p>
+<p>Let&#39;s try Bing UK:</p>
+<ol>
+<li>George Chuvalo - Wikipedia, the free encyclopedia - en.wikipedia.org/wiki/George_Chuvalo</li>
+<li>Chivalo - Discover, collect, buy - chivalo.com</li>
+<li>George Chuvalo - IMDb - www.imdb.com/name/nm0161546</li>
+</ol>
+<p>Hey. Our website appears as the second result. But no other related results are shown, and completely unrelated
+results for <em>Chuvalo</em> are included. At least, in this case, I get a message explaining what&#39;s happening
+(<em>Including results for chuvalo. Do you want results for chivalo only?</em>) which was not the case for Bing in
+Spanish.</p>
+<p><strong>To the Bing guys: Chivalo can be a few things:</strong></p>
+<ol>
+<li>A Spanish word (<em>chívalo</em>) for <em>gossip it</em>. It&#39;s quite unusual, but it&#39;s a form of the verb <em>chivar</em>.</li>
+<li>A Spanish family name.</li>
+<li><strong><a href="http://chivalo.com">Chivalo.com</a> (my startup)</strong></li>
+<li><a href="https://www.google.es/maps/preview#!q=-24.1958333+%2C34.5416667&amp;data=!1m4!1m3!1d3128!2d34.5396333!3d-24.1961326!2m1!1e3!4m14!2m13!1m12!3m8!1m3!1d6262!2d34.7289204!3d-24.0622766!3m2!1i1364!2i660!4f13.1!4m2!3d-24.1958333!4d34.5416667&amp;fid=7">A small village in Mozambique.</a> It&#39;s not recognized by Google Maps, but it&#39;s there.</li>
+<li><a href="http://www.chivalo.nl/" rel="nofollow">A small dutch store.</a></li>
+<li>A few more things that are barely findable.</li>
+</ol>
+<p><strong>None of them have any relation with <em>CH</em>, <em>Chuvalo</em> or <em>cheval</em>, at all. You are trying to be too smart, and you look dumb instead.</strong></p>
+<p>For search results that make sense, try <a href="https://duckduckgo.com/?q=chivalo">DuckDuckGo</a> or <a href="https://www.google.es/#q=chivalo">Google</a>.</p>
+]]></description>
+		</item>
+		<item>
+		<title>Swapping languages in a Gettext PO file</title>
+      <link>http://mola.io/2013/09/17/swapping-languages-in-gettext-po-file</link>
+      <comments>http://mola.io/2013/09/17/swapping-languages-in-gettext-po-file/#comments</comments>
+      <pubDate>Mon, 16 Sep 2013 22:00:00 GMT</pubDate>
+      <dc:creator>Santiago M. Mola</dc:creator>
+
+      <category><![CDATA[python]]></category>
+      <category><![CDATA[i18n]]></category>
+
+      <guid isPermaLink="true">http://mola.io/2013/09/17/swapping-languages-in-gettext-po-file</guid>
+			<description><![CDATA[<p><em>TL;DR: Here you have a script for swapping the source and target language of a Gettext PO file. <a href="https://gist.github.com/smola/6600778">Grab it.</a></em></p>
+<p>For the first time, I&#39;m working on a project that requires full internationalization (<em>i.e.</em> <a href="http://chivalo.com">Chívalo!</a>).
+So far, I have learned 3 things: 1) Internationalization is much harder than I&#39;ve ever thought, 2) most tools suck,
+3) most Java developers seem to live in a bubble where Gettext never happened. Those will be interesting topics for
+other posts, but today I&#39;ll just explain how to solve a simple problem: swapping source and target languages
+of a Gettext PO file.</p>
+<p>We started <a href="http://chivalo.com">Chívalo!</a> as a Spanish-only website, but we always kept in mind that it would
+go international, eventually. We externalized messages to a file referenced by keys (<em>e.g.</em> <code>nav.home=Home</code>).
+This is what most people seem to be doing with Play and the <a href="http://www.playframework.com/documentation/2.1.x/JavaI18N">officially encouraged mechanism</a>.
+We quickly realized that this approach sucks big time.<sup><a class="fn-ref" id="fn1-ref1" href="#fn1">1</a></sup> Then we switched to using Spanish strings as keys, and decided that we would find or create the proper tool to use them at some point.</p>
+<p>The point of starting real internationalization arrived. We picked Gettext, extracted the strings,
+and translated everything to English in a PO file. Now it&#39;s time to switch the development to English-first.
+So we wrote a script to replace every Spanish string with the English equivalent by using the <code>en-US.po</code> file.</p>
+<p>The only thing missing is swapping the source language (Spanish) and the target language (English) in <code>en-US.po</code>
+so that we get the new <code>es-ES.po</code>. I&#39;d thought this would be the easiest part. I was surprised to find out
+that there seems to be no quick way of doing this.<sup><a class="fn-ref" id="fn2-ref1" href="#fn2">2</a></sup></p>
+<p>Here&#39;s a script for doing this with just a simple command:</p>
+<script src="https://gist.github.com/smola/6600778.js"></script>
+
+<aside class="footnotes">
+
+<div class="fn">
+  <sup><a id="fn1" class="fn-backref" href="#fn1-ref1">1</a></sup> Using logic keys for localized strings involves one of the two hardest things in Computer Science: naming things. This is particularly bad for the Web. After around three months of development, we needed a couple of scripts just to periodically check untranslated strings, unused strings, take care of renaming keys so that they remain consistent... The added indirection layer of localization keys (hundreds of them) was something that we had to keep always in mind without getting any real benefit for it.
+</div>
+
+<div class="fn">
+  <sup><a id="fn2" class="fn-backref" href="#fn2-ref1">2</a></sup> Gettext does not seem to support it. <a href="http://stackoverflow.com/questions/4700189/switch-gettext-translated-language-with-original-language">StackOverlow had an answer</a> providing a convoluted method that just did not work on Ubuntu Precise.
+</div>
+
+</aside>]]></description>
+		</item>
+		<item>
+		<title>Unlocking data: Power generation statistics in Spain</title>
+      <link>http://mola.io/2013/08/29/unlocking-data-spain-power-generation</link>
+      <comments>http://mola.io/2013/08/29/unlocking-data-spain-power-generation/#comments</comments>
+      <pubDate>Wed, 28 Aug 2013 22:00:00 GMT</pubDate>
+      <dc:creator>Santiago M. Mola</dc:creator>
+
+      <category><![CDATA[unlocking-data]]></category>
+      <category><![CDATA[open-data]]></category>
+      <category><![CDATA[projects]]></category>
+      <category><![CDATA[graphs]]></category>
+      <category><![CDATA[soap]]></category>
+
+      <guid isPermaLink="true">http://mola.io/2013/08/29/unlocking-data-spain-power-generation</guid>
+			<description><![CDATA[<p><em>TL;DR: Spanish Government has a web service to query power generation statistics. But it is locked behind some obscurity and lack of docs. I have put together some scripts to fetch all raw data. <a href="http://smola.github.io/ree-demanda">Fork it on GitHub</a> or <a href="http://smola.github.io/ree-demanda/generation_demand_full.csv">download a CSV with all historic data</a>.</em></p>
+<p>For some time, I have been increasingly interested in electricity demand statistics. Some witty folks are using <strong><a href="https://demanda.ree.es/demanda.html">demanda.ree.es</a>, a Flash visualizer for power generation and demand in Spain</strong>, to measure interesting stuff such as the impact of turn-off-the-lights protests or solidarity acts (<a href="http://rinzewind.org/archives/2007/02/01/felicidades-han-sido-ustedes-un-glitch-en-el-sistema/">1</a>) or the success of a general strike (<a href="http://politikon.es/2012/03/29/estimando-el-seguimiento-de-la-huelga-en-tiempo-real/">1</a>, <a href="http://rinzewind.org/archives/2012/11/14/y-asi-va-la-huelga-respecto-a-huelgas-anteriores/">2</a>, <a href="http://politikon.es/2012/11/29/como-estimar-el-impacto-de-una-huelga-via-demanda-electrica/">3</a>). These uses are really exciting and I think we can get much more out of this kind of data. <strong>So I decided to provide easy access to it.</strong></p>
+<h2>How?</h2>
+<p>Let&#39;s go to <a href="https://demanda.ree.es/demanda.html"><a href="https://demanda.ree.es/demanda.html">https://demanda.ree.es/demanda.html</a></a> and fire up Google Developer Tools.</p>
+<pre><code>GET https://demanda.ree.es/WSVisionaV01/wsDemanda30Service?WSDL
+GET https://demanda.ree.es/WSVisionaV01/wsDemanda30FinoService?WSDL
+GET https://demanda.ree.es/WSVisionaV01/wsDemanda30Service?xsd=1
+GET https://demanda.ree.es/WSVisionaV01/wsDemanda30FinoService?xsd=1
+POST https://demanda.ree.es/WSVisionaV01/wsDemanda30FinoService
+POST https://demanda.ree.es/WSVisionaV01/wsDemanda30Service
+POST https://demanda.ree.es/WSVisionaV01/wsDemanda30FinoService
+POST https://demanda.ree.es/WSVisionaV01/wsDemanda30FinoService</code></pre>
+<p>Great! It&#39;s just a SOAP web service. This is going to be easy. A Python script using <a href="https://fedorahosted.org/suds/">suds</a> will do... well, <em>not so fast</em>.</p>
+<p>The first request is a call to the <code>consultaTiempo</code>, a method that returns the current time. It works. But the rest of methods require a parameter <code>clave</code> (Spanish for <code>key</code>). <em>Dammit</em>. And it&#39;s not just some constant API key that I can copy from Developer Tools to my script. It changes every few seconds and the older ones are no longer valid. Every time there is a call to <code>consultaTiempo</code>, the key changes. Hey! That means it&#39;s time-based!</p>
+<p>After a quick analysis between some timestamps and their corresponding times, I realize that keys increase at a constant rate and they are strongly correlated to the timestamp. Each unit increase in the key corresponds to roughly 1 second in time. But I cannot figure it out.</p>
+<p>So I downloaded the <a href="https://demanda.ree.es/VisionaFlexCO2.swf">swf</a> and disasembled the code with <a href="http://swftools.org/">swftools</a>&#39;s swfdump.</p>
+<p>Here it is. It always calls the <code>consultaTiempo</code> method just before retrieving some data:</p>
+<pre><code>00024) + 1:1 pushstring &quot;consultaTiempo&quot;
+00025) + 2:1 findpropstrict &lt;q&gt;[private]VisionaFlexCO2::_VisionaFlexCO2_Operation2_c
+00026) + 3:1 callproperty &lt;q&gt;[private]VisionaFlexCO2::_VisionaFlexCO2_Operation2_c, 0 params
+00027) + 3:1 pushstring &quot;prevProgFino&quot;
+...
+00030) + 5:1 pushstring &quot;valoresMaxMinFino&quot;</code></pre>
+<p>Following the function calls, I get to a function called <code>prueba</code> (Spanish for <code>test</code>). That&#39;s funny. It looks as if they &quot;ofuscated&quot; the key-generation function under a non-important name. But the key is generated there, and it seems an easy operation:</p>
+<pre><code>00023) + 0:1 getlocal_2
+00024) + 1:1 pushbyte 5
+00025) + 2:1 dup.
+00026) + 3:1 callproperty &lt;q&gt;[namespace]http://adobe.com/AS3/2006/builtin::substr, 2 params
+00027) + 1:1 coerce_s
+00028) + 1:1 setlocal_2
+00030) + 0:1 findpropstrict &lt;q&gt;[public]::parseFloat
+00031) + 1:1 getlocal_2
+00032) + 2:1 callproperty &lt;q&gt;[public]::parseFloat, 1 params
+00033) + 1:1 convert_d
+00034) + 1:1 setlocal_3
+00036) + 0:1 getlocal_3
+00037) + 1:1 pushdouble 1.307000
+00038) + 2:1 divide.
+00039) + 1:1 convert_d
+00040) + 1:1 setlocal_3
+00042) + 0:1 getlocal_3
+00043) + 1:1 convert_i
+00044) + 1:1 setlocal r4
+00046) + 0:1 findproperty &lt;q&gt;[private]VisionaFlexCO2::clave</code></pre>
+<p>Ok. Got it. So I already have the Python equivalent:</p>
+<pre><code class="lang-python">key = str(int(float(timestamp[<span class="number">5</span>:<span class="number">10</span>])/ <span class="number">1.307000</span>))</code></pre>
+<p>Yay! It works! The only thing missing are a few SOAP calls and some boring JSON dumping code.</p>
+<h2>Show me the code!</h2>
+<p>The resulting script for fetching all historic data and generatic some graphs can be found in <a href="https://github.com/smola/ree-demanda">ree-demanda repo at GitHub</a>. Everything it&#39;s pretty basic, but it gets the job done.</p>
+<h2>Data, NOW</h2>
+<p>I fetched all historic data from the web service and consolidated it in a single CSV file. You can find it at <a href="https://github.com/smola/ree-demanda"><a href="https://github.com/smola/ree-demanda">https://github.com/smola/ree-demanda</a></a>. I plan to update it regularly and, eventually, set up a simple REST API to query it. In the mean time, if you find it is outdated, poke me at santi@mola.io and I will update it.</p>
+<h2>Visualization example</h2>
+<p>Here is a visual example of the data. Power generated since 2007 in Spain. Each line is a different power source. Data is relative to the total power demand at a given time.</p>
+<p><img src="//mola.io/img/ree_monthly_relative.png" alt="Power generation by source in Spain; 2007-2013"></p>
+<h2>Ideas?</h2>
+<p>What would you do with this data? Are you interested in a specific graph, crossing it with other data sources? Would it be useful for an online service? What knowledge can be obtained out of it?</p>
+<p>If you have any idea, please, use the comments or write me at santi@mola.io.</p>
+]]></description>
+		</item>
+	</channel>
+</rss>

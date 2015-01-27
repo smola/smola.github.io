@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+      <title>mola.io</title>
+
+    <link rel="alternate" type="application/rss+xml" title="mola.io" href="http://feeds.feedburner.com/molaio?format=xml">
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/main-1422312081000.css">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css">
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome-ie7.min.css">
+    <![endif]-->
+
+    <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+
+    <!-- fonts -->
+    <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script><script>  WebFont.load({"google":{"families":["Monda"]}}  );</script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-43666029-1', 'mola.io');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div class="wrap">
+
+      <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+      <![endif]-->
+
+      <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">mola.io</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/archive">Archive</a></li>
+          </ul>
+          <ul class="social-icons nav navbar-nav navbar-right">
+            <li><a href="http://github.com/smola"><i class="icon-github"></i></a></li>
+            <li><a href="http://twitter.com/mola_io"><i class="icon-twitter"></i></a></li>
+            <li><a href="http://linkedin.com/in/santiagomola"><i class="icon-linkedin"></i></a></li>
+            <li><a href="https://plus.google.com/107710791533787214572?rel=author"><i class="icon-google-plus"></i></a></li>
+            <!-- TODO: No icon: <li><a href="http://ohloh.mola.io">Ohloh</a></li> -->
+          </ul>
+        </div>
+      </nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+
+
+      <div id="main-content">
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+          <h2 class="entry-title" itemprop="name headline">Vodafone Spain's web blocking system</h2>
+            <time class="updated" datetime="2015-01-25T23:00:00.000Z" pubdate itemprop="datePublished">26 January 2015</time>
+
+          <div class="entry-content" itemprop="articleBody">
+            <p>Vodafone Spain is deploying a new web blocking system dubbed Castor. This is the first time that a Spanish ISP has taken the web blocking beyond the DNS or IP level. They&#39;re performing large-scale <a href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack">Man-in-the-Middle attacks</a>, intercepting HTTP requests to some website&#39;s IPs and serving an HTML redirect to their blocking system instead.</p>
+<p>The blocking system has received a lot of public exposure when <a href="https://thepiratebay.se">The Pirate Bay</a> was included in the blocking list. The block affected only a few broadband customers since December 2014, but on January 26th the block was deployed to the whole Vodafone network, affecting most (if not all) customers.</p>
+<p><em>Update: as of January 27th, the Vodafone Spain unblocked The Pirate Bay until it receives a court order.</em></p>
+<p>Vodafone Spain has depoloyed a <a href="http://en.wikipedia.org/wiki/Deep_packet_inspection">Deep Packet Inspection (DPI)</a> for <em>parental control</em> by <a href="http://www.optenet.es/en-us/">Optenet</a> under codename <a href="http://castor.vodafone.es">Castor</a>. This system inspects HTTP traffic from every Vodafone customer looking for patterns that match some rules. In this case, it intercepted HTTP request with the header <code>Host: thepiratebay.se</code>.</p>
+<p>In a way, this is much more sophisticated than the traditional DNS or IP block. However, it&#39;s still completely ineffective: HTTPS traffic is not affected, <a href="http://thepiratebay.se">http://thepiratebay.se</a> is blocked, but http<strong>s</strong>://thepiratebay.se is not.</p>
+<h2>More info</h2>
+<p><strong>More on the TPB block by Vodafone Spain:</strong></p>
+<ul>
+<li><a href="http://torrentfreak.com/spanish-government-orders-pirate-bay-blockade-150127/">TorrentFreak: Spanish Government orders Pirate Bay blockade</a> (<a href="https://archive.today/uHWJw">archive</a>)</li>
+<li><a href="http://www.bitcloud.es/2014/12/censura-de-vodafone-fibra.html?m=1">Bitcloud: Censura de Vodafone Fibra</a> (<a href="https://archive.today/Xd32N">archive</a>) <em>(Spanish)</em></li>
+</ul>
+<p><strong>More on Optenet&#39;s and Vodafone&#39;s DPI systems:</strong></p>
+<ul>
+<li><a href="http://www.optenet.es/en-us/webfilter.asp">Optenet: WebFilter - Internet Filtering &amp; Application Management</a> (<a href="https://archive.today/tYmk2">archive</a>)</li>
+<li><a href="http://www.optenet.es/en-us/solutions-telecom.asp">Optenet: Multitenant Internet Security Solutions for Telco</a> (<a href="https://archive.today/Sjt3G">archive</a>)</li>
+<li><a href="http://broabandtrafficmanagement.blogspot.com.es/2011/06/dpi-deployments-74-vodafone-turkey-uses.html">Broadband Traffic Management: DPI Deployments (74): Vodafone Turkey Uses Optenet and Allot for Web Filtering</a> (<a href="https://archive.today/LqinI">archive</a>)</li>
+</ul>
+<h2>The technical details</h2>
+<p>Here&#39;s a sample of what we get when we perform a request to thepiratebay.org (with DNS resolving to the right IP):</p>
+<pre><code class="lang-bash">$ curl -v http://thepiratebay.org
+* About to connect() to thepiratebay.org port 80 (<span class="comment">#0)</span>
+*   Trying 80.92.65.144... connected
+&gt; GET / HTTP/1.1
+&gt; User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
+&gt; Host: thepiratebay.org
+&gt; Accept: */*
+&gt; 
+&lt; HTTP/1.1 200 OK
+&lt; Pragma: no-cache
+&lt; Cache-Control: no-cache
+&lt; Expires: -1
+&lt; Content-Length: 640
+&lt; Content-Type: text/html
+&lt; 
+&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=<span class="string">"refresh"</span> content=<span class="string">"0; url=http://castor.vodafone.es/public/stoppages/stop.htmopt?CAT=%5Bp2p_servers-lg%7CVDFLegal-lu%5D&amp;RULE=%5BPoliticaLegal%5D&amp;DATETIME=%5B26/Jan/2015:23:32:14%5D&amp;FILE=-&amp;CODE=06de8af1c97a7e4a6a74a83eba063d40fee3f29ce9f246546bf8b3237503f730a902db232a8b86f9d577b9f62db0c7e8e959f5fd91ea8f8e3607d4c824db1d8f79ef996cba9b33da07a38f63c32211bd39275e99f61120df&amp;LANG=esp&amp;optcheckwfsp=%29%3E%E8%05%EB%E5%A5%2C%2BA%AF%A8u%F7%C1%17%B87%C1e&amp;URL=http://thepiratebay.org/&amp;ui=D6Ime4pzx5jhP%2FHbLzMZomjBakeo0jkVKrJXvhphCbORHbWu7q6J638wQ702CwB1&amp;IP=077.231.234.167&amp;USER=-&amp;CLIENTID=-"</span>&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;
+* Connection <span class="comment">#0 to host thepiratebay.org left intact</span>
+* Closing connection <span class="comment">#0</span></code></pre>
+<p>The redirection goes to <a href="castor.vodafone.es">castor.vodafone.es</a> (212.73.40.87) a server running Optenet Web Server.</p>
+<p>A request to google.com adding the HTTP header &quot;Host: thepiratebay.org&quot; triggers the redirection too:</p>
+<pre><code class="lang-bash">$ curl -v -H <span class="string">"Host: thepiratebay.org"</span> http://google.com
+* About to connect() to google.com port 80 (<span class="comment">#0)</span>
+*   Trying 216.58.211.206... connected
+&gt; GET / HTTP/1.1
+&gt; User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
+&gt; Accept: */*
+&gt; Host: thepiratebay.org
+&gt; 
+&lt; HTTP/1.1 200 OK
+&lt; Pragma: no-cache
+&lt; Cache-Control: no-cache
+&lt; Expires: -1
+&lt; Content-Length: 640
+&lt; Content-Type: text/html
+&lt; 
+&lt;html&gt;&lt;head&gt;&lt;meta http-equiv=<span class="string">"refresh"</span> content=<span class="string">"0; url=http://castor.vodafone.es/public/stoppages/stop.htmopt?CAT=%5Bp2p_servers-lg%7CVDFLegal-lu%5D&amp;RULE=%5BPoliticaLegal%5D&amp;DATETIME=%5B27/Jan/2015:00:03:57%5D&amp;FILE=-&amp;CODE=06de8af1c97a80496a77a83eba063d40fee3f29ce9f246546bf8b3237503f730a902db232a8b86f9d577b9f62db0c7e8e959f5fd91ea8f8e3607d4c824db1d8f79ef996cba9b33da07a38f63c32211bd39275e99f61120df&amp;LANG=esp&amp;optcheckwfsp=%29%3E%E8%05%EB%E5%A5%2C%2BA%AF%A8u%F7%C1%17%B87%C1e&amp;URL=http://thepiratebay.org/&amp;ui=D6Ime4pzx5jhP%2FHbLzMZomjBakeo0jkVKrJXvhphCbORHbWu7q6J638wQ702CwB1&amp;IP=077.231.234.167&amp;USER=-&amp;CLIENTID=-"</span>&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;
+* Connection <span class="comment">#0 to host google.com left intact</span>
+* Closing connection <span class="comment">#0</span></code></pre>
+
+          </div>
+
+          <aside role="meta">
+            <div role="tags">
+              <span role="icon" aria-hidden="true" class="icon-tag"></span><span>Tags:</span>
+                <a href="/tag/censorship">censorship</a>&nbsp;
+            </div>
+            <div role="social_media">
+            </div>
+          </aside>
+
+          <div class="disqus-block">
+            <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_shortname = 'molaio';
+                var disqus_identifier = '/2015/01/26/vodafone-spain-web-blocking-system';
+                var disqus_title = 'Vodafone Spain&#39;s web blocking system';
+                var disqus_url = 'http://mola.io/2015/01/26/vodafone-spain-web-blocking-system';
+
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+          </div>
+
+        </article>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+    </div> 
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <p>
+            Copyright &copy; 2015 Santiago M. Mola
+            </p>
+            <p>
+            Content is released under the <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 license</a>.
+            </p>
+            <p>
+            Source code for this blog is released under the <a href="#">MIT license</a> at <a href="http://github.com/smola/smola.github.io">GitHub</a>.
+            </p>
+        </div>
+          <div class="col-lg-6">
+            <p>
+            Powered by <a href="http://laktek.github.io/punch/">Punch</a>, <a href="http://getbootstrap.com/">Bootstrap 3</a>, <a href="http://jquery.com">jQuery</a>, <a href="https://github.com/scottjehl/Respond">Respond.js</a>, <a href="http://softwaremaniacs.org/soft/highlight/en/">Highlight.js</a> and other stuff.
+            </p>
+        </div>
+      </div>
+    </footer>
+
+    <!--[if lt IE 9]>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]><!-->
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!--<![endif]-->
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.0.3.min.js"><\/script>')</script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.min.js"></script>
+
+  </body>
+</html>
