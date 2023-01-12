@@ -1,0 +1,14 @@
+#!/bin/bash
+set -eux
+
+# auto-accept installing required packages
+export npm_config_yes=true
+
+npx prettier --write src/index.html
+
+mkdir -p dist
+
+for f in index.html style.css; do
+  npx html-minifier-terser --collapse-whitespace --remove-comments --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --sort-attributes --sort-class-name src/$f -o dist/$f
+done
+
